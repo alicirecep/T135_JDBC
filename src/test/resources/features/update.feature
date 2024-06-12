@@ -21,3 +21,13 @@ Feature: Update Query Execution
     * PreparedUpdateQuery hazirlanir ve calistirilir.
     * PreparedUpdateQuery icin donen sonuclar islenir.
     * Database baglantisi kapatilir.
+
+
+    # "id=?" olan kullanıcının "is_read=1" olan bildirimlerini '0' Olarak Update edip doğrulayınız.
+
+  @UpdateQuery02
+  Scenario: Belirli bir id ile is_read bilgisini update etme.
+
+    * UpdateQuery02 hazirlanir ve calistirilir.
+    * UpdateQuery02 icin donen sonuclar islenir.
+    * Database baglantisi kapatilir.

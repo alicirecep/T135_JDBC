@@ -10,6 +10,8 @@ public class QueryManage {
 
 	private String preparedUpdateQuery = "update users set mobile  = ? where username LIKE ?";
 
+	private String updateQuery02 = "update admin_notifications set is_read = 0 where id= 1";
+
 	// ************ Getter ***********
 
 
@@ -25,7 +27,14 @@ public class QueryManage {
 		return updateQuery01;
 	}
 
+	public String getUpdateQuery02() {
+		return updateQuery02;
+	}
+
 	public String getPreparedUpdateQuery() {
 		return preparedUpdateQuery;
+
+
+
 	}
 }

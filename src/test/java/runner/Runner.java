@@ -14,8 +14,8 @@ import org.junit.runner.RunWith;
         },
         features = "src/test/resources",
         glue = {"stepDefinitions"},
-        tags = " @PreparedUpdateQuery",
-        dryRun = true
+        tags = " @UpdateQuery02",
+        dryRun = false
 )
 
 public class Runner {

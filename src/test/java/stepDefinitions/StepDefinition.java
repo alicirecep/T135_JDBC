@@ -98,6 +98,7 @@ public class StepDefinition {
 		 query = queryManage.getUpdateQuery01();
 		 rowCount = JDBCReusableMethods.updateQuery(query);
 
+
 	}
 	@Given("UpdateQuery01 icin donen sonuclar islenir.")
 	public void update_query01_icin_donen_sonuclar_islenir() {
@@ -110,6 +111,7 @@ public class StepDefinition {
 
 
 
+
 // *************** Prepared Statement ile UPDATE QUERY *********
 
 	@Given("PreparedUpdateQuery hazirlanir ve calistirilir.")
@@ -118,22 +120,35 @@ public class StepDefinition {
 		query = queryManage.getPreparedUpdateQuery();
 		preparedStatement = JDBCReusableMethods.getConnection().prepareStatement(query);
 
-// update users set mobile  = ? where username LIKE ?
+          // update users set mobile  = ? where username LIKE ?
 
-
-		preparedStatement.setString(1, "team135");
+		preparedStatement.setString(1, "135");
 		preparedStatement.setString(2, "%e_");
 
-
-
+		rowCount = preparedStatement.executeUpdate();
 
 	}
 	@Given("PreparedUpdateQuery icin donen sonuclar islenir.")
 	public void prepared_update_query_icin_donen_sonuclar_islenir() {
 
-
+		int expectedRowCount = 18;
+		assertEquals( expectedRowCount , rowCount);
 
 	}
+// ------------------------------------------------------------------------
+	@Given("UpdateQuery02 hazirlanir ve calistirilir.")
+	public void update_query02_hazirlanir_ve_calistirilir() throws SQLException {
+		query = queryManage.getUpdateQuery02();
+		rowCount = JDBCReusableMethods.getStatement().executeUpdate(query);
+
+	}
+	@Given("UpdateQuery02 icin donen sonuclar islenir.")
+	public void update_query02_icin_donen_sonuclar_islenir() {
+
+		int expected = 1;
+		assertEquals(expected, rowCount);
+	}
+
 
 
 }

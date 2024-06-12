@@ -34,11 +34,23 @@ select * from cron_schedules;
 -- 5 Minutes
 -- 10 Minutes
 
-SELECT name FROM cron_schedules LIMIT 2;
+select name from cron_schedules limit 2;
 
 select * from users;
 
-UPDATE users set mobile = 000000000 where username LIKE '%e_';]]></console>
+update users set mobile = 111111 where username like '%e_';
+
+update users set mobile  = ? where username like ?;
+
+select * from users;
+
+select * from users;
+
+select * from admin_notifications;
+
+-- "id=?" olan kullanıcının "is_read=1" olan bildirimlerini '0' Olarak Update edip doğrulayınız.
+
+update admin_notifications set is_read = 0 where id= 1;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
