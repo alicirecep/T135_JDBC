@@ -6,7 +6,7 @@
   </component>
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
@@ -18,7 +18,27 @@
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="f472010b-81b7-457a-971e-23f61f32bccf">
       <console name="T135_DERS" type="STANDARD" schema="u168183796_qaloantec" session="Main"><![CDATA[select * from users
-select * from admins]]></console>
+select * from admins
+
+-- Database içindeki "deposits" toblosunda  "amount" değeri 100$ ile 500$ 
+-- arasında olan user_id’leri doğrulayınız
+
+select * from deposits;
+
+select user_id from deposits where amount between 100 and 500
+
+-- Database içindeki "cron_schedules" tablosunda ilk 2 kaydın "name" bilgisini doğrulayınız
+
+select * from cron_schedules;
+
+-- 5 Minutes
+-- 10 Minutes
+
+SELECT name FROM cron_schedules LIMIT 2;
+
+select * from users;
+
+UPDATE users set mobile = 000000000 where username LIKE '%e_';]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
