@@ -12,6 +12,11 @@ public class QueryManage {
 
 	private String updateQuery02 = "update admin_notifications set is_read = 0 where id= 1";
 
+	private String preparedUpdateQuery02 = "update admin_notifications set is_read = ? where id = ?";
+
+	private String preparedInsertQuery01 = "insert into admin_password_resets (id,email,token,status) values (?,?,?,?)";
+
+	private String preparedInsertQuery02 = "insert into device_tokens (id, user_id, is_app, token) values (?,?,?,?)";
 	// ************ Getter ***********
 
 
@@ -34,7 +39,21 @@ public class QueryManage {
 	public String getPreparedUpdateQuery() {
 		return preparedUpdateQuery;
 
-
-
 	}
+
+	public String getPreparedUpdateQuery02() {
+		return preparedUpdateQuery02;
+	}
+
+	public String getPreparedInsertQuery01() {
+		return preparedInsertQuery01;
+	}
+
+	public String getPreparedInsertQuery02() {
+		return preparedInsertQuery02;
+	}
+
+
+
+
 }

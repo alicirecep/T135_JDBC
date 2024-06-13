@@ -50,7 +50,28 @@ select * from admin_notifications;
 
 -- "id=?" olan kullanıcının "is_read=1" olan bildirimlerini '0' Olarak Update edip doğrulayınız.
 
-update admin_notifications set is_read = 0 where id= 1;]]></console>
+update admin_notifications set is_read = 0 where id= 1;
+
+
+update admin_notifications set is_read = ? where id = ?;
+
+
+select * from admin_notifications;
+
+select is_read from admin_notifications where id = 3;
+
+select * from admin_password_resets;
+
+
+insert into admin_password_resets (id,email,token,status) values (?,?,?,?);
+
+-- Database üzerinde "divice_tokens" tablosuna istenen veriyi tek sorguda ekleyiniz.
+
+select * from device_tokens;
+
+-- id user_id is_app token
+
+insert into device_tokens (id, user_id, is_app, token) values (?,?,?,?);]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">

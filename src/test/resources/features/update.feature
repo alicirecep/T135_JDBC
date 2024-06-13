@@ -31,3 +31,33 @@ Feature: Update Query Execution
     * UpdateQuery02 hazirlanir ve calistirilir.
     * UpdateQuery02 icin donen sonuclar islenir.
     * Database baglantisi kapatilir.
+
+
+  @PreparedUpdateQuery02
+  Scenario: Belirli bir id ile is_read bilgisini prepared ile update etme.
+
+    * PreparedUpdateQuery02 hazirlanir ve calistirilir.
+    * PreparedUpdateQuery02 icin donen sonuclar islenir.
+    * Database baglantisi kapatilir.
+
+  @PreparedInsertQuery01
+    Scenario: admin_password_resets tablosuna yeni (id,email,token,status,created_at datalarla)
+               veri girisi yapiniz.
+
+
+      * InsertQuery01 hazirlanir ve calistirilir.
+      * InsertQuery01 icin donen sonuclar islenir.
+      * Database baglantisi kapatilir.
+
+  @PreparedInsertQuery02
+  Scenario: divice_tokens tablosuna istenen veriyi ekleme testi.
+
+    * InsertQuery02 hazirlanir ve calistirilir.
+    * InsertQuery02 icin donen sonuclar islenir.
+    * Database baglantisi kapatilir.
+
+
+
+
+
+
