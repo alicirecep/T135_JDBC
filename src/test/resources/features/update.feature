@@ -56,6 +56,41 @@ Feature: Update Query Execution
     * InsertQuery02 icin donen sonuclar islenir.
     * Database baglantisi kapatilir.
 
+@deletequery01
+  Scenario: Update_logs tablosunda "id=?" değerine göre
+            bir datayı siliniz ve silindiğini doğrulayınız.
+
+
+    * DeleteQuery01 hazirlanir ve calistirilir.
+    * Istenen datanin silindigi dogrulanir.
+    * Database baglantisi kapatilir.
+
+
+  @deleteQuery02
+  Scenario: "support_attachments" tablosunda "id = ?"
+             değerine göre  bir dosyayı siliniz ve silindiğini doğrulayınız.
+
+
+    # 1. adim olarak bir veri kaydedelim
+    # 2. adim olarak o veriyi silelim
+    # 3. Adim olarakta verinin silindigini dogrulayalim.
+
+
+    * Support_Atachment yablosuna veri kaydedilir.
+    * DeleteQuery02 hazirlanir ve calistirilir.
+    * Verinin silindigi dogrulanir.
+    * Database baglantisi kapatilir.
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,16 +1,20 @@
 package stepDefinitions;
 
+import com.github.javafaker.Faker;
 import io.cucumber.java.en.Given;
 import manage.QueryManage;
+import utilities.ConfigReader;
 import utilities.JDBCReusableMethods;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 
 public class StepDefinition {
@@ -19,6 +23,8 @@ public class StepDefinition {
 	ResultSet resultSet;
 	int rowCount;
 	PreparedStatement preparedStatement;
+	Faker faker = new Faker();
+	int ID;
 
 
     QueryManage queryManage = new QueryManage();
@@ -229,8 +235,102 @@ public class StepDefinition {
 
 	}
 
+// ************* DELETE QUERY01 ************
+
+	@Given("DeleteQuery01 hazirlanir ve calistirilir.")
+	public void delete_query01_hazirlanir_ve_calistirilir() throws SQLException {
+
+		query = queryManage.getDeleteQuery01();
+		preparedStatement = JDBCReusableMethods.getConnection().prepareStatement(query);
+
+		String silinecekID = ConfigReader.getProperty("silinecekID");
+
+		//  delete from update_logs where id= ?;
+
+		preparedStatement.setString(1,silinecekID);
+
+		rowCount = preparedStatement.executeUpdate();
 
 
+
+		//--------------------------------------------------------
+		String controlQuery = queryManage.getDeleteControlQuery();
+
+		preparedStatement = JDBCReusableMethods.getConnection().prepareStatement(controlQuery);
+
+		// select * from update_logs where id = ?;
+		preparedStatement.setString(1,silinecekID);
+		resultSet = preparedStatement.executeQuery();
+
+	}
+	@Given("Istenen datanin silindigi dogrulanir.")
+	public void ıstenen_datanin_silindigi_dogrulanir() throws SQLException {
+
+		assertEquals(1, rowCount);  // standart test
+		assertFalse(resultSet.next());       // control testi
+
+	}
+
+// ******************* INSERT DELETE SELECT ****************
+
+	@Given("Support_Atachment yablosuna veri kaydedilir.")
+	public void support_atachment_yablosuna_veri_kaydedilir() throws SQLException {
+
+		query = queryManage.getSupportAttachmentInsertQuery();
+		preparedStatement = JDBCReusableMethods.getConnection().prepareStatement(query);
+
+		ID = faker.number().numberBetween(662,700);
+		System.out.println("Eklenen data ID'si "+ID);
+
+		// insert into support_attachments (id, support_message_id, attachment,created_at) values (?,?,?,?)
+
+		preparedStatement.setInt(1,ID);
+		preparedStatement.setInt(2,456987123);
+		preparedStatement.setString(3,"658401a61409c1703149990.png");
+		preparedStatement.setDate(4, Date.valueOf(LocalDate.now()));
+
+
+		rowCount = preparedStatement.executeUpdate();
+
+	}
+	@Given("DeleteQuery02 hazirlanir ve calistirilir.")
+	public void delete_query02_hazirlanir_ve_calistirilir() throws SQLException {
+
+
+		query = queryManage.getDeleteQuery02();
+		preparedStatement = JDBCReusableMethods.getConnection().prepareStatement(query);
+
+		// delete from support_attachments where id = ?
+
+		preparedStatement.setInt(1,ID);
+		rowCount = preparedStatement.executeUpdate();
+		System.out.println("Silinen data ID'si "+ ID);
+
+
+	}
+	@Given("Verinin silindigi dogrulanir.")
+	public void verinin_silindigi_dogrulanir() throws SQLException {
+
+     assertEquals(1,rowCount);
+
+	 query = queryManage.getDeleteControlQuery02();
+	 preparedStatement = JDBCReusableMethods.getConnection().prepareStatement(query);
+
+	 // select * from support_attachments where id = ?
+
+		preparedStatement.setInt(1,ID);
+		resultSet = preparedStatement.executeQuery();
+
+        assertFalse(resultSet.next());
+
+		if (!resultSet.next()){
+			System.out.println(ID+" id numarali data bulunamadi");
+		}else {
+			System.out.println(resultSet.getString("id"));
+		}
+
+
+	}
 
 
 

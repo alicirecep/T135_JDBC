@@ -71,7 +71,30 @@ select * from device_tokens;
 
 -- id user_id is_app token
 
-insert into device_tokens (id, user_id, is_app, token) values (?,?,?,?);]]></console>
+insert into device_tokens (id, user_id, is_app, token) values (?,?,?,?);
+
+-- Update_logs tablosunda "id=?" değerine göre
+--  bir datayı siliniz 
+
+delete from update_logs where id= ?;
+
+select * from update_logs;
+
+select * from update_logs where id = 58;
+
+select * from update_logs;
+
+select * from support_attachments
+  -- id, support_message_id, attachment
+  
+  insert into support_attachments (id, support_message_id, attachment) values (?,?,?);
+  
+  delete from support_attachments where id = ?;
+  
+  select * from support_attachments where id = ?;
+
+
+select * from support_attachments]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">

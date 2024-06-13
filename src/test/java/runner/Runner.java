@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
         },
         features = "src/test/resources",
         glue = {"stepDefinitions"},
-        tags = "@PreparedInsertQuery02",
+        tags = "@deleteQuery02",
         dryRun = false
 )
 
